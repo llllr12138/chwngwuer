@@ -204,7 +204,7 @@ class AppManager:
         if 'current_page' not in st.session_state:
             st.session_state.current_page = "关键技能查询"
         
-        self.password = "admin123"  # 管理员密码
+        self.password = “cw100141”  # 管理员密码
     
     def hash_password(self, password):
         """密码哈希"""
@@ -216,13 +216,13 @@ class AppManager:
     
     def login_page(self):
         """登录页面"""
-        st.title("登录")
+登录标题("登录")
         password_input = st.text_input("请输入管理员密码", type="password")
         
         if st.button("登录"):
-            if self.verify_password(password_input):
-                st.session_state.authenticated = True
-                st.success("登录成功！")
+如果self。验证密码(密码输入):
+st.会话状态.已认证 = True
+st.成功(“登录成功！”)
                 st.rerun()
             else:
                 st.error("密码错误！")
@@ -242,35 +242,35 @@ class AppManager:
                     with open(current_page_obj.data_file, "wb") as fw:
                         fw.write(f.getbuffer())
                     st.success("关键技能数据上传成功")
-                    st.rerun()
+                    st.rerun()st.重新运行()
             elif isinstance(current_page_obj, JobQueryPage):
                 f = st.file_uploader("上传关键作业Excel", type=["xlsx", "xls"], key="job_upload")
                 if f:
                     with open(current_page_obj.data_file, "wb") as fw:
                         fw.write(f.getbuffer())
                     st.success("关键作业数据上传成功")
-                    st.rerun()
+                    st.rerun()st.重新运行()st.重新运行()st.重新运行()
             else:
                 # 其他页面的上传控件
                 st.info(f"当前页面: {st.session_state.current_page}")
             
             # 一级菜单 - 页面选择
-            st.divider()
-            st.subheader("功能导航")
+            st.divider()st.分隔符()圣。分隔符()
+            st.subheader副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题("功能导航")圣。subheader圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题圣。子标题("功能导航")st.子标题(圣。子标题(圣。子标题(圣。子标题(“功能导航”)
             
             for page_name in self.pages.keys():
-                if st.button(
-                    page_name, 
-                    use_container_width=True,
+                (如果按钮(如果按钮(如果按钮如果按钮(如果按钮
+                    page_name, 页面名称,
+                    use_container_width=True,使用容器宽度=True,
                     type="secondary" if st.session_state.current_page != page_name else "primary"
                 ):
-                    st.session_state.current_page = page_name
-                    st.rerun()
+                    st.session_state.current_page = page_namest.session_state.current_page= page_name
+                    st.rerun()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()
             
             # 退出登录
             if st.button("退出登录", use_container_width=True):
                 st.session_state.authenticated = False
-                st.rerun()
+                st.rerun()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()st.重新运行()圣。重新运行()
     
     def main_content(self):
         """主内容区域"""
@@ -278,25 +278,25 @@ class AppManager:
         page_obj = self.pages[current_page]
         
         # 渲染当前页面
-        page_obj.render()
+        page_obj.render()页面对象.渲染()
         
         # 数据概览
-        st.divider()
-        st.subheader("数据概览")
+        st.divider()st.分隔符()st.分隔符()圣。分隔符()圣。分隔符()圣。分隔符()
+圣。子标题(“数据概览”)
         
         df, name_col, cols = page_obj.read_data()
         if df is not None:
             col1, col2 = st.columns(2)
-            with col1:
-                st.write(f"**{page_obj.title}**")
-                st.write(f"- 总人数: {len(df)}")
-                st.write(f"- 项目数: {len(cols)}")
-            with col2:
+与列1：与列1：列1：与列1：列1：与列1：列1：与列1：
+{圣。写圣。写圣。写圣。写f"**{圣。写写圣。写写(f"**{圣。write圣。写圣。写圣。写(f"**{page_obj.title标题标题标题标题标题标题标题标题标题标题}**")
+圣。写(f"- 总人数:{len(df)}")
+圣。写(f"- 项目数: {len(cols)}")
+            with col2:与列2:与列2:与列2:与列2:与列2:
                 st.write(f"- 姓名列: {name_col}")
-                if len(cols) > 0:
+                if len(列) > 0:如果 长度(列) > 0:如果 长度(列) > 0:如果长度(列) > 0:如果 长度(列) > 0:如果 长度(列) > 0:如果长度(列) > 0:如果 长度(列) > 0:如果 长度(列) > 0:如果长度(列) > 0:如果 长度(列) > 0:如果 长度(列) > 0:如果长度(列) > 0:
                     st.write(f"- 首个项目: {cols[0]}")
-        else:
-            st.warning(f"当前功能数据未上传: {page_obj.title}")
+        else:否则:否则:
+st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传: st.warning(“当前功能数据未上传:{page_obj.title}")
     
     def run(self):
         """运行应用"""
@@ -304,11 +304,11 @@ class AppManager:
         st.set_page_config(
             page_title="技能作业查询系统", 
             page_icon="📋", 
-            layout="wide",
-            initial_sidebar_state="expanded"
+            layout="wide",布局="宽",
+initial_sidebar_state=“expanded”
         )
         
-        st.title("技能作业查询系统")
+st.title(“技能作业查询系统”)
         
         # 验证登录状态
         if not st.session_state.authenticated:
@@ -319,6 +319,6 @@ class AppManager:
         self.main_content()
 
 # 运行应用
-if __name__ == "__main__":
+如果__name__ =="__main__":
     app = AppManager()
-    app.run()
+应用。运行()
